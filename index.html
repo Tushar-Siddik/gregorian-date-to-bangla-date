@@ -232,7 +232,7 @@ Use the following forms to convert Gregorian (English) dates to Bangla, or Bangl
                 return;
             }
             try{
-                var jsonUrl = '/api/converttobangladate/json/?day=' + eDay + '&month=' + eMonth + '&year=' + eYear + '&language=Bangla';
+                var jsonUrl = 'https://bangla.plus/api/converttobangladate/json/?day=' + eDay + '&month=' + eMonth + '&year=' + eYear + '&language=Bangla';
                 $.get(jsonUrl, function (result) {
                     if (result) {
                         document.getElementById('convertedBDate').innerHTML = '<span class="hidden-s-inline">' +  result.FullInput + ' <i class="icon-right-arrow"></i> </span>' + result.FullDate;
@@ -255,7 +255,7 @@ Use the following forms to convert Gregorian (English) dates to Bangla, or Bangl
                 return;
             }
             try{
-                var jsonUrl = '/api/converttoenglishdate/json/?day=' + bDay + '&month=' + bMonth + '&year=' + bYear + '&language=Bangla';
+                var jsonUrl = 'https://bangla.plus/api/converttoenglishdate/json/?day=' + bDay + '&month=' + bMonth + '&year=' + bYear + '&language=Bangla';
                 $.get(jsonUrl, function (result) {
                     if (result) {
                         document.getElementById('convertedEDate').innerHTML = '<span class="hidden-s-inline">' + result.FullInput + ' <i class="icon-right-arrow"></i> </span>' + result.FullDate;

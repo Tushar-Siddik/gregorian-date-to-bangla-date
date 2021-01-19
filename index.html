@@ -117,6 +117,7 @@
 <div class="pull-right">
 </div>
 <h1>বাংলা ডেট কনভার্টার</h1>
+<div id="date-today"> </div>
 <div class="sl-content" data-height="165" data-less-caption="সংক্ষিপ্ত" data-more-caption="বিস্তারিত">
 <div class="page-text display-block">
 খ্রিস্টাব্দ (ইংরেজি তারিখ) থেকে বাংলা অথবা বাংলা তারিখ থেকে খ্রিস্টাব্দে রূপান্তরের জন্য নিচের ফরম দু&#39;টি ব্যবহার করুন।
@@ -285,7 +286,7 @@ Use the following forms to convert Gregorian (English) dates to Bangla, or Bangl
 
         $(document).ready(function (e) {
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/bp-sw?v=kupEqkzJuSobH2f_2ZK28fjzDPCVmkAM3m64kWrDijg1');
+                navigator.serviceWorker.register('bp-sw?v=kupEqkzJuSobH2f_2ZK28fjzDPCVmkAM3m64kWrDijg1');
             }
         });
     </script>
@@ -302,7 +303,7 @@ Use the following forms to convert Gregorian (English) dates to Bangla, or Bangl
                 var jsonUrl = 'https://bangla.plus/api/converttobangladate/json/?day=' + eDay + '&month=' + eMonth + '&year=' + eYear + '&language=Bangla';
                 $.get(jsonUrl, function (result) {
                     if (result) {
-                        document.getElementById('convertedBDate').innerHTML = '<span class="hidden-s-inline">' +  result.FullInput + ' <i class="far fa-angle-double-right"></i> </span>' + '||' +result.FullDate;
+                        document.getElementById('convertedBDate').innerHTML = '<span class="hidden-s-inline">' +  result.FullInput + ' <i class="far fa-angle-double-right"></i> </span>' + ' || ' +result.FullDate;
                         document.getElementById('bWeekday').innerHTML = result.Weekday;
 
                     }
@@ -326,7 +327,7 @@ Use the following forms to convert Gregorian (English) dates to Bangla, or Bangl
                 var jsonUrl = 'https://bangla.plus/api/converttoenglishdate/json/?day=' + bDay + '&month=' + bMonth + '&year=' + bYear + '&language=Bangla';
                 $.get(jsonUrl, function (result) {
                     if (result) {
-                        document.getElementById('convertedEDate').innerHTML = '<span class="hidden-s-inline">' + result.FullInput + ' <i class="fa fa-angle-double-right"></i> </span>' + result.FullDate;
+                        document.getElementById('convertedEDate').innerHTML = '<span class="hidden-s-inline">' + result.FullInput + ' <i class="fa fa-angle-double-right"></i> </span>'+ ' || ' + result.FullDate;
                         document.getElementById('eWeekday').innerHTML = result.Weekday;
 
                     }

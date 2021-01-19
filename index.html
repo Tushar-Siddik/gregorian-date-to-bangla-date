@@ -16,7 +16,7 @@
 
 <link rel="preload" as="script" href="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin />
 <link rel="preload" as="script" href="https://code.jquery.com/jquery-migrate-3.0.0.min.js" crossorigin />
-<link rel="preload" as="script" href="js/site?v=LdrG18HA-iBRyyl3FpBVkOwo9K6Qu_GAQsZOZStFD0A1" />
+
 
 <link rel="preload" as="font" href="fonts/fontello.woff2?24128401" />
 <link rel="preload" as="font" href="fonts/bangla/SiyamRupali.woff2" />
@@ -299,42 +299,13 @@ Use the following forms to convert Gregorian (English) dates to Bangla, or Bangl
 <script defer src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 <script defer src="https://code.jquery.com/jquery-migrate-3.0.0.min.js" crossorigin="anonymous"></script>
-<script>
-// Nav Menu - Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon
-//----------------------------------------------------------------------------------------------------------------
-function toggleNav() {
-    var x = document.getElementById("navbar");
-    if (x.className === "topnav") {
-        x.className += " responsive";
-    } else {
-        x.className = "topnav";
-    }
-}
+<script type="text/defer">window.jQuery || document.write('<script src="js/jquery">\x3C/script>')</script>
+<script defer src="js/site?v=LdrG18HA-iBRyyl3FpBVkOwo9K6Qu_GAQsZOZStFD0A1"></script>
 
-//Set local time zone offset to cookie
-//------------------------------------
-$(document).ready(function (e) {
-    if (!cookieExists("banglaplus_timeZoneOffset")) {
-        var now = new Date();
-        var timeZoneOffset = -now.getTimezoneOffset();  // in minutes
-        now.setTime(now.getTime() + 10 * 24 * 60 * 60 * 1000); // keep it for 10 days
-        document.cookie = "banglaplus_timeZoneOffset=" + timeZoneOffset.toString()
-            + ";expires=" + now.toGMTString() + ";path=/;" + document.cookie;
 
-        //Cookie is just set. Refresh the page to reflect the local time, otherwise the first time the page is loaded, it won't display the local date time
-        window.location.reload();
-    }
-});
 
-function cookieExists(name) { //Checks if a cookie exists
-    var nameToFind = name + "=";
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-        if (cookies[i].trim().indexOf(nameToFind) === 0) return true;
-    }
-    return false;
-} 
- </script>
+
+
 
 <script type="text/defer">
         dateToday('date-today', 'Bangla', 'আজ ');

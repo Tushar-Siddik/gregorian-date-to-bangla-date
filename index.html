@@ -16,7 +16,6 @@
 
 <link rel="preload" as="script" href="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin />
 <link rel="preload" as="script" href="https://code.jquery.com/jquery-migrate-3.0.0.min.js" crossorigin />
-<link rel="preload" as="script" href="js/site?v=LdrG18HA-iBRyyl3FpBVkOwo9K6Qu_GAQsZOZStFD0A1" />
 
 <link rel="preload" as="font" href="fonts/fontello.woff2?24128401" />
 <link rel="preload" as="font" href="fonts/bangla/SiyamRupali.woff2" />
@@ -37,9 +36,8 @@
         p{margin-bottom:20px}
         a{color:#0d6206;text-decoration:none}
         a:hover,a:active{color:#000;text-decoration:undeactive
-        ul{padding-left:20px}
-        li{margin-bottom:20px}
-        .bijoy-font{font-family:'Sutonny'!important;font-size:1.2em}
+        
+
         .body-content{background-color:#fff;overflow:hidden;padding:30px 0;min-height:600px}
         body.empty-layout{padding-top:0;background-color:#fff}
         .clearfix::after{content:"";clear:both;display:table}
@@ -84,22 +82,7 @@
         @media only screen and (min-width:768px){.container{width:750px}}
         @media only screen and (min-width:992px){.container{width:970px}}
         @media only screen and (min-width:1200px){.container{width:1170px}}
-        nav{background-color:#526d51;position:fixed;top:0;width:100%;z-index:1000}
-        .topnav{height:55px;background-color:#31522f;margin:0 -15px;overflow:hidden}
-        .topnav a{float:left;display:block;color:#f2f2f2;text-align:center;padding:14px 16px;text-decoration:none;font-size:17px}
-        .nav-right{float:right;display:block;color:#f2f2f2;text-align:center;padding:14px 16px;text-decoration:none;font-size:17px}
-        .logo{padding:10px 16px 2px 16px!important}
-        #logo{max-height:33px}
-        #language{border-radius:4px;margin-top:-5px;padding:2px 6px;background-color:#899b87;color:#fff;height:30px}
         #date-today{display:block;color:#000000;}
-        .topnav .icon{display:none}
-        .dropdown{float:left;overflow:hidden}
-        .dropdown .dropbtn{font-size:17px;border:none;outline:none;color:#fff;padding:14px 16px;background-color:inherit;font-family:inherit;margin:0}
-        .dropdown-content{display:none;position:absolute;background-color:#efefef;min-width:160px;box-shadow:0 8px 16px 0 rgba(0,0,0,.2);z-index:1}
-        .dropdown-content a{float:none;color:#000;padding:12px 16px;text-decoration:none;display:block;text-align:left}
-        .topnav a:hover,.dropdown:hover .dropbtn{background-color:#555;color:#fff}
-        .dropdown-content a:hover{background-color:#ddd;color:#000}
-        .dropdown:hover .dropdown-content{display:block}
         @media screen and (max-width:767px){.topnav.responsive .logo{border-bottom:1px solid #526d51}.topnav a:not(.logo),.dropdown .dropbtn,.nav-right{display:none}.topnav a.icon{float:right;display:block}.topnav.responsive{height:auto;position:relative}.topnav.responsive .icon{position:absolute;right:0;top:0}.topnav.responsive a,.topnav.responsive .nav-right{float:none;display:block;text-align:left}.topnav.responsive .dropdown{float:none}.topnav.responsive .dropdown-content{position:relative}.topnav.responsive .dropdown .dropbtn{display:block;width:100%;text-align:left}}
         .box{padding:10px;background-color:#efefef;border:#899b87;border-radius:8px;margin-bottom:30px}
         .box.app-links{margin:15px auto 15px auto}
@@ -112,23 +95,7 @@
 </head>
 
 <body>
-<nav>
-<div class="container">
-<div class="topnav" id="navbar">
-<div class="dropdown">
 
-
-
-
-</div>
-</div>
-<div class="nav-right">
-<span id="date-today"></span>
-
-<a title="Menu" href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="toggleNav()">&#9776;</a>
-</div>
-</div>
-</nav>
 
 <div class="container body-content">
 
@@ -299,9 +266,6 @@ Use the following forms to convert Gregorian (English) dates to Bangla, or Bangl
 <script defer src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 <script defer src="https://code.jquery.com/jquery-migrate-3.0.0.min.js" crossorigin="anonymous"></script>
-<script type="text/defer">window.jQuery || document.write('<script src="js/jquery">\x3C/script>')</script>
-<script defer src="js/site?v=LdrG18HA-iBRyyl3FpBVkOwo9K6Qu_GAQsZOZStFD0A1"></script>
-
 
 
 
@@ -315,6 +279,28 @@ Use the following forms to convert Gregorian (English) dates to Bangla, or Bangl
                 navigator.serviceWorker.register('bp-sw?v=kupEqkzJuSobH2f_2ZK28fjzDPCVmkAM3m64kWrDijg1');
             }
         });
+        
+ $(document).ready(function (e) {
+    if (!cookieExists("banglaplus_timeZoneOffset")) {
+        var now = new Date();
+        var timeZoneOffset = -now.getTimezoneOffset();  // in minutes
+        now.setTime(now.getTime() + 10 * 24 * 60 * 60 * 1000); // keep it for 10 days
+        document.cookie = "banglaplus_timeZoneOffset=" + timeZoneOffset.toString()
+            + ";expires=" + now.toGMTString() + ";path=/;" + document.cookie;
+
+        //Cookie is just set. Refresh the page to reflect the local time, otherwise the first time the page is loaded, it won't display the local date time
+        window.location.reload();
+    }
+});
+
+function cookieExists(name) { //Checks if a cookie exists
+    var nameToFind = name + "=";
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+        if (cookies[i].trim().indexOf(nameToFind) === 0) return true;
+    }
+    return false;
+}
     </script>
 <script>
         function convertToBangla() {
